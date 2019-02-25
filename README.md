@@ -1,4 +1,4 @@
-# webcomponent-vue-app
+# vue-webcomponent-playground
 
 ## Project setup
 ```
