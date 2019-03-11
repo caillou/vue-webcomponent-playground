@@ -9,7 +9,8 @@ export default new Vuex.Store({
   state: {
     origin: undefined,
     destination: undefined,
-    trips: undefined
+    trips: undefined,
+    language: 'de'
   },
   mutations: {
   },
