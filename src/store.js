@@ -5,17 +5,13 @@ const CancelToken = axios.CancelToken
 
 Vue.use(Vuex)
 
-const store = new Vuex.Store({
+export default new Vuex.Store({
   state: {
-    dateTime: new Date(),
     origin: undefined,
     destination: undefined,
     trips: undefined
   },
   mutations: {
-    updateDateTime (state) {
-      state.dateTime = new Date()
-    }
   },
   actions: {
     origin (store, value) {
@@ -56,11 +52,3 @@ function getTripData (store) {
       store.state.trips = result.data.trips
     })
 }
-
-export default store
-
-function loop () {
-  store.commit('updateDateTime')
-  requestAnimationFrame(loop)
-}
-loop()
