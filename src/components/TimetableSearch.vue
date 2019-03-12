@@ -1,18 +1,19 @@
 <template>
   <div>
-    <sbb-timetable-search
-      @sbb-timetable-search_change="onLocationChange">
-    </sbb-timetable-search>
     <sbb-timetable-search>
       <sbb-autocomplete
         slot="origin"
         name="origin"
         :suggestions="originSuggestions"
+        @sbb-autocomplete_selection="onSelection"
+        @sbb-autocomplete_input="onInput"
       ></sbb-autocomplete>
       <sbb-autocomplete
         slot="destination"
         name="destination"
         :suggestions="destinationSuggestions"
+        @sbb-autocomplete_selection="onSelection"
+        @sbb-autocomplete_input="onInput"
       ></sbb-autocomplete>
     </sbb-timetable-search>
   </div>
@@ -33,22 +34,35 @@ export default {
     }
   },
   methods: {
+    onInput (e) {
+      const type = e.target.name
+      const input = e.detail.input
 
-    onLocationChange (e) {
-      const { type, value } = e.detail
       const cancelTokenKey = `${type}CancelToken`
       const cancelToken = this[cancelTokenKey]
       cancelToken && cancelToken()
 
       axios
-        .get(`http://global-warmer.com/station-search/${value}`, {
+        .get(`http://global-warmer.com/station-search/${input}`, {
           cancelToken: new CancelToken((cancelToken) => {
             this[cancelTokenKey] = cancelToken
           })
         })
         .then((respone) => {
-          this.$store.dispatch(type, respone.data.locations[0])
+          const suggestions = respone.data.locations.map(location => ({
+            label: location.name,
+            id: location.uic
+          }))
+          this[`${type}Suggestions`] = JSON.stringify(suggestions)
         })
+    },
+    onSelection (e) {
+      const type = e.target.name
+      const selection = e.detail.selection
+      this.$store.dispatch(type, {
+        name: selection.label,
+        uic: selection.id
+      })
     }
   },
   computed: {
