@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@caillou/aem-web-component-test": "0.0.4",
-    "@stauffacher/sbbpoc": "^2.0.1",
+    "@stauffacher/sbbpoc": "^2.0.2",
     "axios": "^0.18.0",
     "time-elements": "^2.0.0",
     "vue": "^2.6.8",
