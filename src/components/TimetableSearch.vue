@@ -7,6 +7,7 @@
         :suggestions="originSuggestions"
         @sbb-autocomplete_selection="onSelection"
         @sbb-autocomplete_input="onInput"
+        @sbb-autocomplete_blur="onBlur"
       ></sbb-autocomplete>
       <sbb-autocomplete
         slot="destination"
@@ -14,6 +15,7 @@
         :suggestions="destinationSuggestions"
         @sbb-autocomplete_selection="onSelection"
         @sbb-autocomplete_input="onInput"
+        @sbb-autocomplete_blur="onBlur"
       ></sbb-autocomplete>
     </sbb-timetable-search>
   </div>
@@ -34,6 +36,11 @@ export default {
     }
   },
   methods: {
+
+    onBlur (e) {
+      const type = e.target.name
+      e.target.value = this.$store.state[type].name
+    },
     onInput (e) {
       const type = e.target.name
       const input = e.detail.input
@@ -49,7 +56,9 @@ export default {
           })
         })
         .then((respone) => {
-          const suggestions = respone.data.locations.map(location => ({
+          const locations = respone.data.locations
+          this.$store.dispatch(type, locations[0])
+          const suggestions = locations.map(location => ({
             label: location.name,
             id: location.uic
           }))
