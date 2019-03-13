@@ -74,6 +74,12 @@ export default {
     onSelection (e) {
       const type = e.target.name
       const selection = e.detail.selection
+
+      const state = this.$store.state
+      if (state[type] && state[type].uic === selection.id) {
+        return
+      }
+
       this.$store.dispatch(type, {
         name: selection.label,
         uic: selection.id
