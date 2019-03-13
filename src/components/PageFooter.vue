@@ -38,28 +38,18 @@
         </sbb-footer-column-link-list>
       </sbb-footer-column>
     </sbb-footer-columns>
-
-    <!--
-      optional property: language
-      the default language to be used
-
-      optional property: languages
-      the languages to show in the language switch. if languages are not
-      provided,
-      a default set is used. see sbb-footer.tsx for details.
-    -->
-    <sbb-language-selector
-      language="de"
-      :languages="languages"
-      @sbb-language-selector_language-switch="onLanguageChange">
-    </sbb-language-selector>
-
+    <sbb-footer-bottom>
+      <sbb-language-selector
+        language="de"
+        :languages="languages"
+        @sbb-language-selector_language-switch="onLanguageChange">
+      </sbb-language-selector>
+      <sbb-footer-links-bottom></sbb-footer-links-bottom>
+    </sbb-footer-bottom>
   </sbb-footer>
-
 </template>
 
 <script>
-
 export default {
   data () {
     const languages = JSON.stringify([

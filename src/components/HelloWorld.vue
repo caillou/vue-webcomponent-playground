@@ -2,7 +2,6 @@
   <div>
     <sbb-global-styles></sbb-global-styles>
     <sbb-webfonts></sbb-webfonts>
-
     <sbb-header
       :language="language"
       :items="headerItems">

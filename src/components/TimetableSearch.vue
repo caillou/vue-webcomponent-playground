@@ -1,33 +1,35 @@
 <template>
-  <div>
-    <sbb-timetable-search>
-      <sbb-autocomplete
-        slot="origin"
-        name="origin"
-        :suggestions="originSuggestions"
-        :value="originValue"
-        @sbb-autocomplete_selection="onSelection"
-        @sbb-autocomplete_input="onInput"
-        @sbb-autocomplete_blur="onBlur"
-      >
-      </sbb-autocomplete>
-      <sbb-autocomplete
-        slot="destination"
-        name="destination"
-        :suggestions="destinationSuggestions"
-        :value="destinationValue"
-        @sbb-autocomplete_selection="onSelection"
-        @sbb-autocomplete_input="onInput"
-        @sbb-autocomplete_blur="onBlur"
-      ></sbb-autocomplete>
-    </sbb-timetable-search>
-  </div>
+  <sbb-timetable-search>
+    <sbb-autocomplete
+      slot="origin"
+      name="origin"
+      placeholder="Von"
+      label="Von"
+      :suggestions="originSuggestions"
+      :value="originValue"
+      @sbb-autocomplete_selection="onSelection"
+      @sbb-autocomplete_input="onInput"
+      @sbb-autocomplete_blur="onBlur"
+    >
+    </sbb-autocomplete>
+    <sbb-autocomplete
+      slot="destination"
+      name="destination"
+      placeholder="Nach"
+      label="Nach"
+      :suggestions="destinationSuggestions"
+      :value="destinationValue"
+      @sbb-autocomplete_selection="onSelection"
+      @sbb-autocomplete_input="onInput"
+      @sbb-autocomplete_blur="onBlur"
+    ></sbb-autocomplete>
+  </sbb-timetable-search>
 </template>
 
 <script>
 import axios from 'axios'
-
 import defaultLocations from '../mock-data/default-locations'
+
 const CancelToken = axios.CancelToken
 const defaultLocationsJSON = JSON.stringify(defaultLocations)
 
@@ -41,7 +43,6 @@ export default {
     }
   },
   methods: {
-
     onBlur (e) {
       const type = e.target.name
       this[`${type}Value`] = this.$store.state[type].name
@@ -79,11 +80,6 @@ export default {
       })
     }
   },
-  computed: {
-
-  },
-
   name: 'TimetableSearch'
-
 }
 </script>
