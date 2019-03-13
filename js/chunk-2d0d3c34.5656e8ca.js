@@ -1,0 +1,2 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d0d3c34"],{"5dc2":function(e,n,t){"use strict";t.r(n),t.d(n,"SbbTableCaption",function(){return c});var r=t("13cd"),c=function(){function e(){}return e.prototype.render=function(){return Object(r["b"])("div",{id:"table"},Object(r["b"])("slot",null))},Object.defineProperty(e,"is",{get:function(){return"sbb-table-caption"},enumerable:!0,configurable:!0}),Object.defineProperty(e,"style",{get:function(){return""},enumerable:!0,configurable:!0}),e}()}}]);
+//# sourceMappingURL=chunk-2d0d3c34.5656e8ca.js.map
