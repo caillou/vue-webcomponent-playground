@@ -5,14 +5,17 @@
         slot="origin"
         name="origin"
         :suggestions="originSuggestions"
+        :value="originValue"
         @sbb-autocomplete_selection="onSelection"
         @sbb-autocomplete_input="onInput"
         @sbb-autocomplete_blur="onBlur"
-      ></sbb-autocomplete>
+      >
+      </sbb-autocomplete>
       <sbb-autocomplete
         slot="destination"
         name="destination"
         :suggestions="destinationSuggestions"
+        :value="destinationValue"
         @sbb-autocomplete_selection="onSelection"
         @sbb-autocomplete_input="onInput"
         @sbb-autocomplete_blur="onBlur"
@@ -32,14 +35,16 @@ export default {
   data () {
     return {
       destinationSuggestions: defaultLocationsJSON,
-      originSuggestions: defaultLocationsJSON
+      originSuggestions: defaultLocationsJSON,
+      destinationValue: '',
+      originValue: ''
     }
   },
   methods: {
 
     onBlur (e) {
       const type = e.target.name
-      e.target.value = this.$store.state[type].name
+      this[`${type}Value`] = this.$store.state[type].name
     },
     onInput (e) {
       const type = e.target.name
