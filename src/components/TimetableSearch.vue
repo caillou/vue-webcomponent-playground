@@ -55,7 +55,7 @@ export default {
       cancelToken && cancelToken()
 
       axios
-        .get(`http://global-warmer.com/station-search/${input}`, {
+        .get(`https://global-warmer.com/sbb/station-search/${input}`, {
           cancelToken: new CancelToken((cancelToken) => {
             this[cancelTokenKey] = cancelToken
           })

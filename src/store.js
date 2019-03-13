@@ -43,7 +43,7 @@ function getTripData (store) {
   tripRequestCancelation && tripRequestCancelation()
 
   axios
-    .get(`http://global-warmer.com/from/${origin.uic}/to/${destination.uic}`, {
+    .get(`https://global-warmer.com/sbb/from/${origin.uic}/to/${destination.uic}`, {
       cancelToken: new CancelToken(function executor (c) {
         // An executor function receives a cancel function as a parameter
         tripRequestCancelation = c
