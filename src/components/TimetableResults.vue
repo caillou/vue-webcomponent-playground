@@ -5,9 +5,7 @@
       :from="originName"
       :to="destinationName">
     </sbb-timetable-results-title>
-    <div v-if="isLoading">
-      Loading ...
-    </div>
+    <sbb-loader  v-if="isLoading" show="true"></sbb-loader>
     <sbb-timetable-results v-else-if="trips">
       <sbb-timetable-result
         v-for="trip in trips"
